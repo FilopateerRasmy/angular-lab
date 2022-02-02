@@ -1,6 +1,60 @@
+<div class="mb-3">
+  <h1>{{ storName }}</h1>
+  <img [src]="storeLogo" alt="" [style.width]="'100px'" />
+  <h3 *ngIf="Discount != 'No Discount'">
+    {{ "We offer an explicit discount of: " + (Discount | percent) }}
+  </h3>
+</div>
+
+<div class="dropdown">
+  <button
+    class="btn btn-primary dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton1"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    categories
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li *ngFor="let cat of categoryList">
+      <a class="dropdown-item"> {{ cat.Name }} </a>
+    </li>
+  </ul>
+</div>
+<ng-template #products>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productList">
+        <td>{{ product.ID }}</td>
+        <td>{{ product.Name }}</td>
+        <td>{{ product.Price }}</td>
+        <td>{{ product.Quantity }}</td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table> </ng-template
+>>
+
+<input type="text" [(ngModel)]="clientName" />
+
+<div *ngIf="isPurchased; else products">
+
+  <h3>Thanks for purchasing from our Store {{ clientName }}</h3>
+</div>
+
+<button class="btn btn-primary" (click)="onPurchase()">Buy</button>
+
 <div>
-  <h1>{{storName}}</h1>
-  <img [src]="storeLogo" alt="" [style.width]="'100px'">
-  <h3>{{'We offer an explicit discount of: ' + Discount +'%'}}</h3>
+  <h2>{{storName | uppercase}}</h2>
 </div>
 
