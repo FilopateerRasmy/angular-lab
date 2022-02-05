@@ -1,0 +1,13 @@
+<p *ngIf="errMsg">
+  {{errMsg}}
+</p>
+
+<div *ngIf="postsList?.length && !errMsg">
+<ng-container *ngFor="let user of postsList">
+  <p>{{user.title}}</p>
+  <p>{{user.body.substring(0,5)}}   <a [routerLink]="['/posts', user.id]">view more</a></p>
+
+
+</ng-container>
+</div>
+

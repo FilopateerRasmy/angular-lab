@@ -15,22 +15,23 @@ export class ProductServiceService {
 
 productsWatcher: BehaviorSubject<IProduct[]> = new BehaviorSubject(this.products)
 productObservable = this.productsWatcher.asObservable();
+
   constructor() { }
 
 
   getAllProducts(){
-    return this.productObservable;
+     return this.productObservable;
+
   }
   getProductById(prodId:number){
     const product = this.products.find(product => product.ID === prodId);
     if(!product || isNaN(prodId)) null;
-
     return product;
   }
 
   addProduct(product:IProduct){
     this.products.push( product);
-    this.productsWatcher.next(this.products);
+     this.productsWatcher.next(this.products);
   }
 
 }

@@ -1,0 +1,11 @@
+<p *ngIf="errMsg">
+  {{errMsg}}
+</p>
+
+<div *ngIf="userList?.length && !errMsg">
+<ng-container *ngFor="let user of userList">
+  <p>{{user.name}}</p>
+  <p>{{user.email}}</p>
+  <p>{{user.username}}</p>
+</ng-container>
+</div>
