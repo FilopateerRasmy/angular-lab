@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductServiceService } from '../services/product-service.service';
 import { DiscountOffers } from '../Shared-classes-and-types/discount-offers';
@@ -19,7 +20,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   clientName!:string;
   isPurchased!:boolean;
   sub!:Subscription;
-  constructor(private prductService:ProductServiceService) {
+  constructor(private prductService:ProductServiceService, private router:Router, private route:ActivatedRoute) {
     this.Discount = DiscountOffers.tenPercent;
     this.storName = 'amazon';
     this.storeLogo = 'https://images.pexels.com/photos/176837/pexels-photo-176837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
@@ -49,6 +50,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
+  }
+
+  discount(){
+    this.router.navigate(['discount'], {relativeTo:this.route})
+  }
+  noDiscount(){
+    this.router.navigate(['nodiscount'], {relativeTo:this.route})
   }
 
 }

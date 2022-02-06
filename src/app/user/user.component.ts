@@ -8,14 +8,14 @@ import { IUser } from '../Shared-classes-and-types/iuser';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  userList!:IUser[];
-  errMsg:string = ''
-  constructor(private userService:UserService) { }
+  userList!: IUser[];
+  errMsg: string = ''
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe(users =>{
+    this.userService.getAllUsers().subscribe(users => {
       this.userList = users
-    }, (err)=>{
+    }, err => {
       console.log(err)
       this.errMsg = err.message;
     })

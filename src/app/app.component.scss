@@ -1,15 +1,4 @@
-main{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 
-}
-.head{
-  flex-grow: 3;
-}
-.product{
-  flex-grow: 3;
-}
 :host{
   display: block;
   height: 100vh;
