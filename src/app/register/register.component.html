@@ -1,30 +1,42 @@
 <div class="container">
-    <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">userName</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">confirm Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>where did you hear about us</option>
-                <option value="facebook">facebook</option>
-                <option value="Twitter">Twitter</option>
-                <option value="google">google</option>
-              </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-      </form>
+  <form #registerForm="ngForm" (ngSubmit)="onRegister()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">username</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" required name="username" #name="ngModel"
+        [(ngModel)]="registerInfo.name" pattern="^[A-Za-z]{3,20}$">
+      <p class="text-red" *ngIf="name.errors?.['required'] && name.touched">name is required</p>
+      <p class="text-red" *ngIf="name.errors?.['pattern'] && name.touched">name contains only upper and lower characters</p>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+      required [(ngModel)]="registerInfo.email" #email="ngModel" name="email">
+      <p class="text-red" *ngIf="email.errors?.['required'] && email.touched">email is required</p>
+      <p class="text-red" *ngIf="email.errors?.['pattern'] && email.touched">Enter valid email address</p>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1"
+      required [(ngModel)]="registerInfo.password" #password="ngModel" name="password">
+      <p class="text-red" *ngIf="password.errors?.['required'] && password.touched">password is required</p>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">confirm Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1"
+      required [(ngModel)]="registerInfo.confirmPassword" #confirmpassword="ngModel" name="confirmPassword">
+      <p class="text-red" *ngIf="confirmpassword.errors?.['required'] && confirmpassword.touched">confirmpassword is required</p>
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" #hearAboutUs="ngModel" [(ngModel)]="registerInfo.hearAboutUs" name="hearAboutUs" required>
+        <option selected>where did you hear about us</option>
+        <option value="facebook">facebook</option>
+        <option value="Twitter">Twitter</option>
+        <option value="google">google</option>
+      </select>
+      <p class="text-red" *ngIf="hearAboutUs.errors?.['required'] && hearAboutUs.touched">please choose where did you hear about us</p>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || (password.value  != confirmpassword.value)">Register</button>
+  </form>
 </div>
-
+{{registerForm.value | json}}
