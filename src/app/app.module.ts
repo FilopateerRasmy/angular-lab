@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductsComponent } from './products/products.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { PostsComponent } from './posts/posts.component';
@@ -17,6 +17,7 @@ import { ProductsWithDiscountComponent } from './products/products-with-discount
 import { ProductsWithoutDiscountComponent } from './products/products-without-discount/products-without-discount.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { NotesComponent } from './notes/notes.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +33,15 @@ import { LoginComponent } from './login/login.component';
     ProductsWithDiscountComponent,
     ProductsWithoutDiscountComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { NotesComponent } from './notes/notes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { PostsComponent } from './posts/posts.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'posts', component:PostsComponent},
   {path:'posts/:id/comments', component:PostDetailComponent},
   {path:'login', component:LoginComponent},
+  {path:'notes', component:NotesComponent},
   {path:'register', component:RegisterComponent},
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'**', component:PageNotFoundComponent},
